@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sky Passport</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&display=swap">
+<style>
+:root{--bg:#eef5ff;--ink:#0b2a4a;--card:#fff;--mut:#4d6580;--y:#0b2a4a;--yt:#fff;--blue:#1f78d1;--nav:#0b2a4a;--h1:#8ec8ff;--h2:#dcecff;--bad:#e5484d;--ok:#12a36b;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1830;--ink:#e8f1ff;--card:#13284a;--mut:#9db3d4;--y:#5aaeff;--yt:#06142a;--blue:#5aaeff;--nav:#06142a;--h1:#1b3d6e;--h2:#12294d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a1830;--ink:#e8f1ff;--card:#13284a;--mut:#9db3d4;--y:#5aaeff;--yt:#06142a;--blue:#5aaeff;--nav:#06142a;--h1:#1b3d6e;--h2:#12294d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,"PingFang SC","Microsoft YaHei",sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--nav);z-index:10}
+h1,h2,h3,.big,.logo{font-family:"Baloo 2","PingFang SC","Microsoft YaHei",sans-serif;font-weight:800;line-height:1.2;margin:.2em 0}
+h1{font-size:clamp(1.9rem,7.5vw,3rem)}h3{font-size:1.2rem}p{margin:.4em 0}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--nav);color:#fff;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 12px;padding:10px 16px 16px}
+header::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:3px;background:repeating-linear-gradient(90deg,#fff 0 18px,transparent 18px 34px)}
+header a{color:#fff;font-weight:700;text-decoration:none;margin-right:14px}.logo{font-size:1.3rem;margin:0}
+header nav{display:flex;align-items:center}header nav a:nth-child(2){margin-right:10px}
+select{font:inherit;border:2px solid #fff;background:transparent;color:#fff;border-radius:999px;padding:.15em .6em}option{color:#000}
+main{max-width:920px;margin:0 auto;padding:20px 16px 40px}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.lead{color:var(--mut);max-width:34em}
+.hero{background:linear-gradient(var(--h1),var(--h2));border:2px solid var(--ink);border-radius:24px;padding:22px 18px;position:relative;overflow:hidden;margin-bottom:26px}
+.hero::before{content:"";position:absolute;right:-20px;top:16px;width:150px;height:44px;background:#fff;border-radius:44px;opacity:.7;box-shadow:-60px 28px 0 -6px #fff,40px 34px 0 -10px #fff}
+.hero>*{position:relative}
+.route{display:flex;align-items:center;margin:18px 0 6px}
+.wp{width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--card);display:grid;place-items:center;font-weight:800;flex:none}
+.wp.on{background:var(--blue);color:#fff}.wp.now{background:var(--ink);color:var(--bg)}
+.route i{flex:1;max-width:70px;border-top:3px dashed var(--ink)}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:2px solid var(--ink);border-radius:18px;box-shadow:5px 5px 0 var(--ink);overflow:hidden}
+.band{position:relative;background:var(--t);color:#fff;font-weight:800;padding:10px 16px;border-bottom:2px dashed var(--ink);display:flex;justify-content:space-between}
+.band::before,.band::after{content:"";position:absolute;bottom:-11px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--ink)}
+.band::before{left:-12px}.band::after{right:-12px}
+.card .body{padding:16px 16px 12px}.card p{color:var(--mut);font-size:.95rem}
+.bc{height:20px;margin-top:14px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px,var(--ink) 5px 6px,transparent 6px 10px)}
+.soon{border-style:dashed;box-shadow:none;padding:18px;text-align:center;color:var(--mut)}
+.bar{height:10px;border:2px solid var(--ink);border-radius:9px;margin:12px 0;overflow:hidden}.bar i{display:block;height:100%;background:var(--t)}
+.btn{font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--y);color:var(--yt);border-radius:999px;padding:.5em 1.2em;cursor:pointer;display:inline-block;text-decoration:none}
+.btn:active{transform:translateY(2px)}.alt{background:var(--card);color:var(--ink)}
+.back{color:var(--mut);text-decoration:none;font-weight:700}
+.lh{display:flex;gap:16px;align-items:center;margin:14px 0}.lh .big{font-size:2.4rem;color:#fff;background:var(--t);border:2px solid var(--ink);border-radius:50%;width:80px;height:80px;display:grid;place-items:center;flex:none}
+.tabs,.lvs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px}
+.tb,.lv{font:inherit;font-weight:700;white-space:nowrap;border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:999px;padding:.35em 1em;cursor:pointer}
+.tb.on,.lv.on{background:var(--ink);color:var(--bg)}
+.st{background:var(--card);border:2px solid var(--ink);border-radius:16px}
+#stage{padding:18px;margin-top:6px}
+.rc{list-style:none;padding:0;display:grid;gap:14px}.rc li{padding:14px 18px;border-left:10px solid var(--t)}.rc p{color:var(--mut)}
+.q{font-size:1.15rem;font-weight:700}.opts{display:grid;gap:10px;margin:12px 0}
+.opt,.chip,.bucket{font:inherit;text-align:left;border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:14px;padding:.6em 1em;cursor:pointer}
+.opt.ok,.chip.on{background:var(--ok);color:#fff}.opt:disabled{opacity:.7}
+.no{animation:sh .3s;background:var(--bad)!important;color:#fff!important}
+@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}.chip{border-radius:999px}
+.bk{display:grid;gap:10px}.bucket{display:flex;flex-direction:column;min-height:64px;border-style:dashed}.bucket span{color:var(--ok);font-weight:700}
+.seq{padding-left:1.4em}.seq li{font-weight:700;color:var(--ok)}
+.fb{min-height:1.6em;font-weight:700}.res{text-align:center}.res .big{font-size:2.6rem;color:var(--blue)}.off{opacity:.25}
+.links{list-style:none;padding:0;display:grid;gap:12px}.links a{display:block;padding:12px 18px;color:var(--ink);font-weight:700;text-decoration:none}
+pre{padding:16px;overflow-x:auto;font-size:.85rem;line-height:1.5}
+.field{position:relative;height:260px;border:2px solid var(--ink);border-radius:14px;margin:10px 0;overflow:hidden;background:linear-gradient(var(--h1),var(--h2))}
+.field::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12px;background:repeating-linear-gradient(90deg,var(--ink) 0 20px,transparent 20px 36px)}
+.fall{position:absolute;top:0;left:8px;right:8px;padding:.5em .8em;border:2px solid var(--ink);border-radius:12px;background:var(--card);font-weight:700}
+.lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.lanes .opt{text-align:center;font-weight:800;padding:.8em .2em}
+.mg{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
+.mc{font:inherit;font-weight:700;min-height:78px;border:2px solid var(--ink);border-radius:14px;background:var(--y);color:var(--yt);font-size:1.5rem;cursor:pointer;padding:.4em}
+.mc.up,.mc.ok{font-size:.95rem}.mc.up{background:var(--card);color:var(--ink)}.mc.ok{background:var(--ok);color:#fff}
+.skin{--blue:var(--t);--h1:color-mix(in srgb,var(--t) 30%,var(--bg));--h2:color-mix(in srgb,var(--t) 10%,var(--bg))}
+.skin .lh{background:linear-gradient(var(--h1),var(--h2));border:2px solid var(--ink);border-radius:20px;padding:14px 16px}
+.skin.dots .field{background-image:radial-gradient(color-mix(in srgb,var(--t) 45%,transparent) 24%,transparent 26%),linear-gradient(var(--h1),var(--h2));background-size:16px 16px,auto}
+.skin.dots .lh{position:relative;overflow:hidden}.skin.dots .lh>*{position:relative}
+.skin.dots .lh::before{content:"";position:absolute;inset:0;background:radial-gradient(var(--t) 24%,transparent 26%) 0 0/16px 16px;opacity:.55;-webkit-mask-image:linear-gradient(to left,#000,transparent 45%);mask-image:linear-gradient(to left,#000,transparent 45%);pointer-events:none}
+.spot{display:grid;gap:8px;margin:10px 0}
+.ln{font:inherit;text-align:left;border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:12px;padding:.6em 1em;cursor:pointer}
+.ln.on{background:var(--ink);color:var(--bg)}.ln small{display:block;font-weight:700;font-size:.9rem;margin-top:.3em}
+.ln.bad{border-color:var(--bad);border-width:3px}.ln.bad.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.ln.fp{background:var(--bad);border-color:var(--bad);color:#fff}.ln:disabled{cursor:default;opacity:1}
+@media(min-width:700px){.mg{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:700px){.bk{grid-template-columns:repeat(3,1fr)}.opts.two{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){.no{animation:none}}
+</style>
+</head>
+<body>
+<header id="hd"></header>
+<main id="app"></main>
+<script>
+const T={
+en:{app:"Sky Passport",nl:"Lessons",ab:"About",lang:"Language",h:"Every lesson is a flight",lead:"Get the briefing, train, then pass the landing quiz to earn your stamp. Progress is saved in this browser.",legs:"Legs flown: {0} of {1}",back:"← All flights",flt:"Flight {0}",t1:"Briefing",t2:"Training",t3:"Landing quiz",t4:"Charts",go:"Start training",start:"Board",cont:"Resume",again:"Fly again",lvl:"Level {0}",qn:"Question {0} of {1}",nx:"Next question",fin:"See result",wrong:"Not quite. Try again.",r:["","Bumpy landing. Fly it again!","Smooth landing!","Perfect landing!"],miss:"Misses: {0}",nxt:"Continue",soon:"Next flight",soond:"Add a lesson to the data and it appears here.",abh:"About this site",abp:"Each lesson is a flight with its own look: a briefing, training games and a landing quiz. A lesson is one object in the data, so the page builds itself.",addh:"How to add a lesson",addp:"Add an object to the LESSONS array. Set color, ico and pat to give the lesson its own look. Game types: dispatch, match, spot, sort, order, clear, choose.",pick:"Tap a term, then tap its box.",ord:"Tap the steps in the right order.",quizT:"Landing quiz",dis:"Tap the right answer before it lands!",mat:"Flip two cards to find a matching pair.",clr:"Is the statement correct? Cleared for takeoff, or go around.",yes:"Cleared ✓",nope:"Go around ✗",tru:"It was true.",fls:"It was false.",spot:"Tap every line a Brief Validator would flag, then press Check.",chk:"Check",fine:"This line was fine."},
+zh:{app:"飞行护照",nl:"课程",ab:"关于",lang:"语言",h:"每节课，都是一次飞行",lead:"先听简报，再做训练，最后通过着陆测验，就能盖上这一课的章。进度保存在你的浏览器里。",legs:"已飞航段：{0} / {1}",back:"← 全部航班",flt:"航班 {0}",t1:"飞行简报",t2:"飞行训练",t3:"着陆测验",t4:"航图资源",go:"开始训练",start:"登机",cont:"继续飞行",again:"再飞一次",lvl:"第 {0} 关",qn:"第 {0} 题，共 {1} 题",nx:"下一题",fin:"看结果",wrong:"再想想。",r:["","颠簸着陆，再飞一次！","平稳着陆！","完美着陆！"],miss:"失误 {0} 次",nxt:"继续",soon:"下一个航班",soond:"在数据里新增一节课，它就会出现在这里。",abh:"关于这个网站",abp:"每节课是一次有自己风格的飞行：一份简报、几个训练游戏和一次着陆测验。一节课就是数据里的一个对象，页面会自动生成。",addh:"怎么加一节新课？",addp:"在 LESSONS 数组里加一个对象。用 color、ico、pat 给这节课设定自己的风格。游戏类型有：dispatch、match、spot、sort、order、clear、choose。",pick:"先点一个词，再点它所属的分类。",ord:"按正确的顺序依次点击这些步骤。",quizT:"着陆测验",dis:"在它降落前，点击正确的选项！",mat:"翻开两张牌，找出配对的一组。",clr:"这句话对吗？对就批准起飞，错就复飞。",yes:"批准起飞 ✓",nope:"复飞 ✗",tru:"这句话是对的。",fls:"这句话是错的。",spot:"点出审核者会指出问题的每一行，然后点“检查”。",chk:"检查",fine:"这一行没有问题。"},
+fr:{app:"Passeport aérien",nl:"Cours",ab:"À propos",lang:"Langue",h:"Chaque cours est un vol",lead:"Suivez le briefing, entraînez-vous, puis réussissez le quiz d’atterrissage pour obtenir votre tampon. Votre progression reste dans ce navigateur.",legs:"Tronçons parcourus : {0} sur {1}",back:"← Tous les vols",flt:"Vol {0}",t1:"Briefing",t2:"Entraînement",t3:"Quiz d’atterrissage",t4:"Cartes",go:"Commencer",start:"Embarquer",cont:"Reprendre",again:"Revoler",lvl:"Niveau {0}",qn:"Question {0} sur {1}",nx:"Question suivante",fin:"Voir le résultat",wrong:"Pas tout à fait. Réessayez.",r:["","Atterrissage brutal. Revolez !","Atterrissage en douceur !","Atterrissage parfait !"],miss:"Erreurs : {0}",nxt:"Continuer",soon:"Prochain vol",soond:"Ajoutez un cours dans les données et il apparaît ici.",abh:"À propos de ce site",abp:"Chaque cours est un vol avec son propre style : un briefing, des jeux d’entraînement et un quiz d’atterrissage. Un cours est un objet dans les données, la page se construit seule.",addh:"Comment ajouter un cours ?",addp:"Ajoutez un objet au tableau LESSONS. Réglez color, ico et pat pour donner son style au cours. Types de jeux : dispatch, match, spot, sort, order, clear, choose.",pick:"Touchez un terme, puis sa catégorie.",ord:"Touchez les étapes dans le bon ordre.",quizT:"Quiz d’atterrissage",dis:"Touchez la bonne réponse avant l’atterrissage !",mat:"Retournez deux cartes pour trouver une paire.",clr:"L’énoncé est-il correct ? Autorisé au décollage, ou remise des gaz.",yes:"Autorisé ✓",nope:"Remise des gaz ✗",tru:"C’était vrai.",fls:"C’était faux.",spot:"Touchez chaque ligne que le validateur signalerait, puis appuyez sur Vérifier.",chk:"Vérifier",fine:"Cette ligne était correcte."}};
+const F=["index.html","styles.css","script.js"];
+/* Add a lesson: add one object here. Texts are [English, 中文, Français] */
+const LESSONS=[{
+id:"lesson-01",n:"1",color:"#1f78d1",ico:"✈",by:["Guest session: LaunchLab","嘉宾分享：LaunchLab","Intervenant : LaunchLab"],title:["From design to launch","从设计到上线","De la conception à la mise en ligne"],sub:"Claude Design, Claude Code, GitHub, Vercel",
+recap:[
+[["Design the look first","先设计外观","Concevoir l’apparence d’abord"],["Describe your site in Claude Design. No code needed, and specific prompts work best.","在 Claude Design 里描述你想要的样子，不用写代码，提示词越具体越好。","Décrivez votre site dans Claude Design. Pas de code, et un prompt précis donne de meilleurs résultats."]],
+[["Hand off to Claude Code","Handoff 给 Claude Code","Passer le relais à Claude Code"],["Share → Handoff to Claude Code turns the design into a working site.","Share 菜单里的 Handoff to Claude Code 会把设计变成能运行的网站。","Share → Handoff to Claude Code transforme la maquette en site fonctionnel."]],
+[["GitHub stores the code","GitHub 负责存代码","GitHub stocke le code"],["Commit saves a snapshot on your computer. Push uploads it to GitHub.","Commit 在本机保存快照，Push 才会上传到 GitHub。","Commit enregistre un instantané sur votre ordinateur. Push l’envoie sur GitHub."]],
+[["Vercel makes it a website","Vercel 把代码变成网站","Vercel en fait un site web"],["Connect the repo once. Every push updates the live site, and every PR gets a preview link.","连接仓库后，每次 Push 都会更新线上网站，每个 PR 也有预览链接。","Connectez le dépôt une fois. Chaque push met à jour le site, et chaque PR a son lien d’aperçu."]],
+[["Two things still missing","还缺两样东西","Deux choses manquent encore"],["A plain site forgets users and can’t read live data. Supabase adds login and a database.","纯前端网站记不住用户，也拿不到实时数据。Supabase 提供登录和数据库。","Un site simple oublie les utilisateurs et ne lit pas de données en direct. Supabase ajoute connexion et base de données."]]],
+games:[
+{kind:"dispatch",title:["Runway rush: which file?","跑道冲刺：交给哪个文件？","Ruée sur la piste : quel fichier ?"],lanes:F,items:[
+[["Change the heading text","改标题文字","Changer le texte du titre"],0],
+[["Make the button orange","把按钮变成橙色","Rendre le bouton orange"],1],
+[["Show a popup when clicked","点击后弹出提示","Afficher une fenêtre au clic"],2],
+[["Add a new paragraph","加一段新文字","Ajouter un paragraphe"],0],
+[["Change the font","换字体","Changer la police"],1],
+[["Check the form on submit","提交时检查表单","Vérifier le formulaire à l’envoi"],2],
+[["Fit phone screens","适配手机屏幕","Adapter au téléphone"],1],
+[["Add a button","加一个按钮","Ajouter un bouton"],0]]},
+{kind:"match",title:["Memory match: Git terms","记忆配对：Git 词汇","Memory : les termes Git"],pairs:[
+["Fork",["Your own copy of someone else’s repo","别人仓库的你自己的副本","Votre copie du dépôt d’autrui"]],
+["Clone",["Download a repo to your computer","把仓库复制到你的电脑","Copier un dépôt sur votre ordinateur"]],
+["Commit",["Save a snapshot on your computer","在本机保存一个快照","Enregistrer un instantané en local"]],
+["Push",["Send your commits up to GitHub","把提交上传到 GitHub","Envoyer vos commits sur GitHub"]],
+["Pull Request",["Ask teammates to review your changes","请队友审阅你的修改","Demander une relecture à l’équipe"]],
+["Merge",["Add approved changes to the main project","把通过的修改并入主项目","Intégrer les changements approuvés"]]]},
+{kind:"sort",title:["Control tower: sort the Git terms","塔台分类：Git 词汇","Tour de contrôle : classer les termes Git"],buckets:[["Get a project","拿到项目","Récupérer un projet"],["Save and upload","保存并上传","Enregistrer et envoyer"],["Work as a team","团队合作","Travailler en équipe"]],items:[["Fork",0],["Clone",0],["Commit",1],["Push",1],["Pull Request",2],["Merge",2]]},
+{kind:"order",title:["Takeoff sequence: ship your site","起飞流程：把网站上线","Séquence de décollage : publier le site"],steps:[["Design the look in Claude Design","用 Claude Design 设计外观","Concevoir l’apparence dans Claude Design"],["Hand off to Claude Code to build the site","Handoff 给 Claude Code 生成网站","Passer à Claude Code pour construire le site"],["Push the project to GitHub","把项目 Push 到 GitHub","Pousser le projet sur GitHub"],["Import the repo in Vercel and Deploy","在 Vercel 导入仓库并 Deploy","Importer le dépôt dans Vercel et déployer"]]},
+{kind:"clear",title:["Tower clearance: true or false?","塔台许可：对还是错？","Autorisation de la tour : vrai ou faux ?"],items:[
+{s:["A commit puts your code on GitHub.","Commit 会把代码放到 GitHub 上。","Un commit envoie votre code sur GitHub."],a:false},
+{s:["Vercel updates your live site after each push.","每次 Push 后，Vercel 都会更新线上网站。","Vercel met le site à jour après chaque push."],a:true},
+{s:["styles.css controls what happens on a click.","styles.css 决定点击后发生什么。","styles.css décide de ce qui se passe au clic."],a:false},
+{s:["A Pull Request asks teammates to review changes.","Pull Request 是请队友审阅修改。","Une Pull Request demande une relecture à l’équipe."],a:true},
+{s:["GitHub alone turns your code into a live website.","只靠 GitHub 就能把代码变成线上网站。","GitHub seul transforme le code en site en ligne."],a:false},
+{s:["A token saves you typing your password on every click.","Token 让你不用每次点击都输入密码。","Un token évite de saisir le mot de passe à chaque clic."],a:true},
+{s:["A plain static site remembers users after the tab closes.","纯静态网站在关掉标签页后仍记得用户。","Un site statique se souvient des utilisateurs après fermeture."],a:false},
+{s:["Claude Code can run git commands for you.","Claude Code 可以替你运行 git 命令。","Claude Code peut exécuter les commandes git pour vous."],a:true}]}],
+quiz:[
+{q:["Working alone on your own branch and sure of your changes. Best move?","你独自在自己的分支上改东西，而且很有把握，适合怎么做？","Vous travaillez seul sur votre branche et êtes sûr de vous. Que faire ?"],o:[["Push directly","直接 Push","Push directement"],["Open a Pull Request","发起 Pull Request","Ouvrir une Pull Request"],["Fork your own repo","Fork 自己的仓库","Forker votre propre dépôt"]],a:0,w:["Solo work can push directly. PRs are for team review.","独自开发可以直接 Push，团队协作才需要 PR 审阅。","En solo, un push direct suffit. Les PR servent à la relecture d’équipe."]},
+{q:["What is the difference between GitHub and Vercel?","GitHub 和 Vercel 有什么区别？","Quelle différence entre GitHub et Vercel ?"],o:[["GitHub stores code, Vercel turns it into a website","GitHub 存代码，Vercel 把代码变成网站","GitHub stocke le code, Vercel en fait un site web"],["GitHub designs, Vercel codes","GitHub 负责设计，Vercel 负责写代码","GitHub conçoit, Vercel code"],["They are the same","两者完全一样","C’est la même chose"]],a:0,w:["Vercel reads the repo, builds it and hosts a public link.","Vercel 读取仓库、构建并托管成公开链接。","Vercel lit le dépôt, le construit et l’héberge sous un lien public."]},
+{q:["After a commit, is your code on GitHub?","Commit 之后，代码已经在 GitHub 上了吗？","Après un commit, votre code est-il sur GitHub ?"],o:[["Yes","是的","Oui"],["No, only on your computer until you push","没有，Push 之前只在你的电脑上","Non, seulement sur votre ordinateur jusqu’au push"]],a:1,w:["A commit is a local snapshot. Push syncs it.","Commit 是本地快照，Push 才会同步。","Un commit est local. Push le synchronise."]},
+{q:["What is the temporary “sticker” your browser shows on every request?","浏览器每次请求都会出示的“临时贴纸”叫什么？","Comment s’appelle l’« autocollant » temporaire présenté à chaque requête ?"],o:["Token","Fork","Merge"],a:0,w:["A token says “this is you”, so no password on every click.","Token 证明“这是你”，所以不用每次点击都输入密码。","Un token prouve « c’est bien vous », sans mot de passe à chaque clic."]}],
+links:[[["GitHub: store and share code","GitHub：存放和分享代码","GitHub : stocker et partager le code"],"https://github.com"],[["Vercel: deploy automatically","Vercel：自动部署网站","Vercel : déploiement automatique"],"https://vercel.com"],[["Supabase: login and database","Supabase：登录和数据库","Supabase : connexion et base de données"],"https://supabase.com"],[["tiiny.host: quick static hosting","tiiny.host：快速托管静态网页","tiiny.host : hébergement statique rapide"],"https://tiiny.host"]]
+},{
+id:"lesson-02",n:"2",color:"#17803f",ico:"🧑‍✈️",pat:"dots",
+title:["Build an AI marketing team","搭一支 AI 营销团队","Construire une équipe marketing IA"],
+sub:["A lite agentic workflow with Claude: roles, handoffs and guardrails","用 Claude 搭轻量的智能体工作流：角色、交接和护栏","Un flux agentique léger avec Claude : rôles, relais et garde-fous"],
+by:["Guest: Nick Goh, CMO, Yellow Pages Singapore","嘉宾：Nick Goh，新加坡黄页 CMO","Invité : Nick Goh, CMO, Yellow Pages Singapore"],
+recap:[
+[["Why this matters now","为什么现在要学","Pourquoi c’est important maintenant"],["The talk opened with headlines: companies shifting spending toward AI and cutting jobs, WPP planning to fold Ogilvy, VML and AKQA under one creative banner, and Getty Images filing for US bankruptcy.","开场是几条新闻：企业把投入转向 AI 并裁员、WPP 计划把 Ogilvy、VML 和 AKQA 合并到同一个创意品牌下、Getty Images 在美国申请破产保护。","La présentation a débuté par l’actualité : des entreprises qui réorientent leurs budgets vers l’IA, WPP qui prévoit de regrouper Ogilvy, VML et AKQA, et Getty Images qui demande la protection de la faillite aux États-Unis."]],
+[["Build a team, not one prompt","搭团队，而不是写一个大提示词","Une équipe, pas un seul prompt"],["The demo case was a fictional LV handbag called Terra. The work was split between six AI roles. Planning: Brief Writer, Brief Validator, Strategist. Production: Designer / Art Director, Copywriter, Reviewer.","演示案例是一个虚构的 LV 手袋 Terra。工作被拆给六个 AI 角色。策划组：简报撰写、简报审核、策略师。制作组：设计师/艺术总监、文案、审稿人。","Le cas de démonstration était un sac LV fictif nommé Terra. Le travail est réparti entre six rôles IA. Planification : rédacteur de brief, validateur, stratège. Production : directeur artistique, concepteur-rédacteur, relecteur."]],
+[["The handoff chain","交接链","La chaîne de relais"],["The Writer drafts, the Validator reviews, the Strategist shapes the Big Idea, you approve and save to the knowledge base, then Designer and Copywriter produce and the Reviewer checks the brand voice.","撰写者起草，审核者检查，策略师提炼 Big Idea，你批准并存入知识库，然后设计师和文案产出，审稿人检查品牌调性。","Le rédacteur écrit, le validateur relit, le stratège dégage la Big Idea, vous approuvez et enregistrez dans la base de connaissances, puis création et relecture du ton de la marque."]],
+[["Fresh eyes for the check","审核要换一双新眼睛","Un regard neuf pour la relecture"],["The Validator works in a new chat, so the AI is not grading its own work with the same context. It checks the objective, audience, message and metric.","审核者在新对话里工作，这样 AI 就不是在拿同一份上下文给自己打分。它检查目标、受众、信息和指标。","Le validateur travaille dans une nouvelle conversation : l’IA ne se corrige pas avec le même contexte. Il vérifie objectif, public, message et indicateur."]],
+[["Set up Claude once, reuse it","设置一次，反复使用","Configurer une fois, réutiliser"],["A Project holds the shared context. Each role is a Skill. Connectors such as Higgsfield make the images. A scheduled task can read a “Marketing Brief” email on a timer and save it into the Project.","Project 保存共享上下文，每个角色是一个 Skill，Higgsfield 这类连接器负责生成图像。计划任务可以定时读取主题为 “Marketing Brief” 的邮件，并存进 Project。","Un Project garde le contexte commun, chaque rôle est un Skill, et des connecteurs comme Higgsfield créent les visuels. Une tâche planifiée peut lire un e-mail « Marketing Brief » et l’enregistrer dans le Project."]],
+[["Guardrails matter","要有护栏","Les garde-fous comptent"],["Claude marked its own additions as proposals or [to confirm] and invented no budget figures. It refused to put a real ambassador’s face and a real LV product into an image that could pass as a real LV ad.","Claude 把自己新增的内容标为“建议”或“[待确认]”，没有编造预算数字。它还拒绝把真实代言人的脸和 LV 的真实产品放进一张可能被当成真 LV 广告的图里。","Claude a marqué ses ajouts comme propositions ou [à confirmer] et n’a inventé aucun budget. Il a refusé de mettre le visage d’une vraie ambassadrice et un vrai produit LV dans une image qui pourrait passer pour une vraie publicité LV."]],
+[["Score the work, then improve it","给作品打分，再改进","Noter le travail, puis l’améliorer"],["Finally, ask Claude to score the creative against the standards of agencies like BBH, Ogilvy and McCann, with strengths, weaknesses and one suggestion. One image scored 6.7 out of 10.","最后让 Claude 按 BBH、Ogilvy、McCann 这类广告公司的标准给创意打分，并写出优点、缺点和一条建议。其中一张图得了 6.7 分（满分 10）。","Enfin, demandez à Claude de noter la création selon les critères d’agences comme BBH, Ogilvy et McCann, avec forces, faiblesses et une suggestion. Une image a obtenu 6,7 sur 10."]]],
+games:[
+{kind:"dispatch",title:["Crew desk: who takes the task?","机组调度：这个任务交给谁？","Bureau de l’équipage : qui s’en charge ?"],lanes:[["Writer","撰写者","Rédacteur"],["Validator","审核者","Validateur"],["Strategist","策略师","Stratège"],["Designer","设计师","Designer"],["Copywriter","文案","Concepteur"],["Reviewer","审稿人","Relecteur"]],items:[
+[["Draft the brief from the Project context","根据 Project 资料起草简报","Rédiger le brief à partir du Project"],0],
+[["Critique the brief in a fresh chat","在新对话里批评这份简报","Critiquer le brief dans une nouvelle conversation"],1],
+[["Write the one-page Big Idea","写出 Big Idea 一页纸","Rédiger la Big Idea sur une page"],2],
+[["Create the key visual concepts","制作主视觉概念","Créer les concepts de visuel principal"],3],
+[["Build the messaging hierarchy","搭建信息层级","Construire la hiérarchie des messages"],4],
+[["Check the work against brand voice","对照品牌调性检查作品","Vérifier le travail selon le ton de la marque"],5],
+[["Check objective, audience, message and metric","检查目标、受众、信息和指标","Vérifier objectif, public, message et indicateur"],1],
+[["Adapt the copy for each channel","按渠道改写文案","Adapter le texte à chaque canal"],4]]},
+{kind:"order",title:["Handoff checklist: pass it on in order","交接清单：按顺序传下去","Liste de relais : dans l’ordre"],steps:[["Brief Writer drafts the brief","Brief Writer 起草简报","Le rédacteur écrit le brief"],["Brief Validator reviews it in a new chat","Brief Validator 在新对话里审核","Le validateur le relit dans une nouvelle conversation"],["Strategist shapes the Big Idea","Strategist 提炼 Big Idea","Le stratège dégage la Big Idea"],["You approve and save it to the knowledge base","你批准并存入知识库","Vous approuvez et enregistrez dans la base de connaissances"],["Designer and Copywriter produce the work","Designer 和 Copywriter 产出作品","Designer et concepteur produisent le travail"],["Reviewer checks the brand voice","Reviewer 检查品牌调性","Le relecteur vérifie le ton de la marque"]]},
+{kind:"spot",title:["Brief inspection: spot the flaws","简报检查：找出问题","Inspection du brief : repérez les failles"],lines:[
+{t:["Goal: make Terra famous.","目标：让 Terra 出名。","Objectif : rendre Terra célèbre."],bad:true,why:["Too vague. A good goal is specific and measurable.","太模糊。好的目标要具体、可衡量。","Trop vague. Un bon objectif est précis et mesurable."]},
+{t:["Audience: affluent women in Singapore, aged 30–50.","受众：新加坡 30–50 岁的高收入女性。","Public : femmes aisées à Singapour, 30–50 ans."]},
+{t:["Target: reach 1 million people.","目标：触达 100 万人。","Cible : toucher 1 million de personnes."],bad:true,why:["Too high for a small, affluent audience. Restate it as a share of that audience.","对规模小的高收入受众来说太高，应改成占这群人的比例。","Trop élevé pour un public restreint et aisé. Exprimez-le en part de ce public."]},
+{t:["Budget: [to confirm]","预算：[待确认]","Budget : [à confirmer]"]},
+{t:["Terra is made from 100% recycled materials.","Terra 100% 由回收材料制成。","Terra est fabriqué à 100 % de matériaux recyclés."],bad:true,why:["An unverified claim. Material claims must be proven before anything is published.","这是未经核实的说法。材料声明必须先证实才能发布。","Allégation non vérifiée. Elle doit être prouvée avant toute publication."]},
+{t:["Channels: every platform, same message.","渠道：所有平台，同一条信息。","Canaux : toutes les plateformes, même message."],bad:true,why:["Each channel should serve an objective and fit its platform.","每个渠道都应服务一个目标，并适配平台。","Chaque canal doit servir un objectif et s’adapter à sa plateforme."]},
+{t:["Metric: 300 boutique appointment or enquiry actions.","指标：300 次预约或咨询到店行动。","Indicateur : 300 rendez-vous ou demandes en boutique."]},
+{t:["Launch: September 2027.","上市时间：2027 年 9 月。","Lancement : septembre 2027."]}]},
+{kind:"match",title:["Memory match: the Claude toolkit","记忆配对：Claude 工具箱","Memory : la boîte à outils Claude"],pairs:[
+["Project",["A shared workspace with files and context","带有文件和上下文的共享工作区","Un espace commun avec fichiers et contexte"]],
+["Skill",["A saved role Claude can reuse","Claude 可以反复使用的已保存角色","Un rôle enregistré que Claude peut réutiliser"]],
+["Connector",["A link to another tool, like Higgsfield","连接到其他工具，比如 Higgsfield","Un lien vers un autre outil, comme Higgsfield"]],
+["Scheduled task",["Runs by itself at a set time","在设定时间自动运行","S’exécute seule à une heure fixée"]],
+["Knowledge base",["Approved work saved for reuse","保存下来、可复用的已批准成果","Travaux approuvés conservés pour réutilisation"]],
+["Big Idea",["The one core idea a campaign builds on","整个活动围绕的那个核心创意","L’idée centrale d’une campagne"]]]},
+{kind:"clear",title:["Crew check: true or false?","机组确认：对还是错？","Contrôle d’équipage : vrai ou faux ?"],items:[
+{s:["The Validator should work in the same chat as the Writer.","审核者应该和撰写者在同一个对话里工作。","Le validateur doit travailler dans la même conversation que le rédacteur."],a:false},
+{s:["You approve the work and save it to the knowledge base before production starts.","你要先批准并存入知识库，再开始制作。","Vous approuvez et enregistrez dans la base de connaissances avant la production."],a:true},
+{s:["Claude agreed to put a real ambassador’s face on the model.","Claude 同意把真实代言人的脸换到模特身上。","Claude a accepté de mettre le visage d’une vraie ambassadrice sur le mannequin."],a:false},
+{s:["Claude invented budget figures to fill the gaps.","Claude 编造预算数字来填补空白。","Claude a inventé des chiffres de budget pour combler les vides."],a:false},
+{s:["A scheduled task can read an email on a timer and save a brief into a Project.","计划任务可以定时读取邮件，并把简报存进 Project。","Une tâche planifiée peut lire un e-mail à heure fixe et enregistrer un brief dans un Project."],a:true},
+{s:["One long prompt is the best way to do all six jobs.","用一个很长的提示词做完六个角色的工作最好。","Un seul long prompt est la meilleure façon de faire les six tâches."],a:false},
+{s:["Claude can score creative work against agency standards like Ogilvy and McCann.","Claude 可以按 Ogilvy、McCann 这类广告公司的标准给创意打分。","Claude peut noter une création selon les critères d’agences comme Ogilvy et McCann."],a:true},
+{s:["Claude recommended first the concept with no unverified material claim.","Claude 先推荐了不含未经核实材料声明的那个概念。","Claude a recommandé en premier le concept sans allégation non vérifiée."],a:true}]}],
+quiz:[
+{q:["Why does the Brief Validator work in a fresh chat?","为什么 Brief Validator 要在新对话里工作？","Pourquoi le validateur travaille-t-il dans une nouvelle conversation ?"],o:[["So the AI is not grading its own work with the same context","这样 AI 就不是在拿同一份上下文给自己打分","Pour que l’IA ne se corrige pas avec le même contexte"],["Because new chats are faster","因为新对话更快","Parce que les nouvelles conversations sont plus rapides"],["Because old chats expire","因为旧对话会过期","Parce que les anciennes conversations expirent"]],a:0,w:["Fresh eyes catch problems the writer’s context hides.","全新的视角能发现撰写者的上下文看不到的问题。","Un regard neuf repère ce que le contexte du rédacteur masque."]},
+{q:["Which role builds the messaging hierarchy and adapts it per channel?","哪个角色负责搭建信息层级，并按渠道改写？","Quel rôle construit la hiérarchie des messages et l’adapte par canal ?"],o:[["Copywriter","文案（Copywriter）","Concepteur-rédacteur"],["Reviewer","审稿人（Reviewer）","Relecteur"],["Strategist","策略师（Strategist）","Stratège"]],a:0,w:["The Copywriter outputs channel-by-channel copy. The Strategist stops at the Big Idea.","文案负责逐个渠道的文案，策略师只做到 Big Idea。","Le concepteur produit les textes canal par canal. Le stratège s’arrête à la Big Idea."]},
+{q:["Claude declined to put a real ambassador’s face on the model. Why?","Claude 为什么拒绝把真实代言人的脸换到模特身上？","Pourquoi Claude a-t-il refusé de mettre le visage d’une vraie ambassadrice ?"],o:[["The image could be mistaken for a real endorsement she never agreed to","这张图可能被当成她从未同意的真实代言","L’image pourrait passer pour un vrai parrainage qu’elle n’a jamais accepté"],["Faces are too hard to generate","人脸太难生成","Les visages sont trop difficiles à générer"],["It ran out of credits","额度用完了","Il n’avait plus de crédits"]],a:0,w:["A training label does not change what the image shows.","加上“教学用”的标签，也不会改变图像看起来的样子。","Une mention « pédagogique » ne change pas ce que montre l’image."]},
+{q:["In this workflow, what is a Skill?","在这套流程里，Skill 是什么？","Dans ce flux, qu’est-ce qu’un Skill ?"],o:[["A saved role with instructions Claude can reuse","Claude 可以反复使用的、带说明的已保存角色","Un rôle enregistré avec des instructions réutilisables"],["A video filter","视频滤镜","Un filtre vidéo"],["A paid plan","付费套餐","Un abonnement payant"]],a:0,w:["Each of the six roles was set up as its own Skill.","六个角色各自被设置成一个 Skill。","Chacun des six rôles est configuré comme un Skill."]}],
+links:[[["Claude: Projects and Skills","Claude：Project 和 Skill","Claude : Projects et Skills"],"https://claude.ai"],[["Higgsfield: AI images and video","Higgsfield：AI 图像和视频","Higgsfield : images et vidéo IA"],"https://higgsfield.ai"],[["ChatGPT: image generation","ChatGPT：图像生成","ChatGPT : génération d’images"],"https://chatgpt.com"]]
+}];
+
+const $=s=>document.querySelector(s),app=$("#app");
+const LX={en:0,zh:1,fr:2},HL={en:"en",zh:"zh-CN",fr:"fr"};
+let lang="";try{lang=localStorage.getItem("lpl")||""}catch(e){}
+if(!(lang in LX)){const n=(navigator.language||"").slice(0,2);lang=n==="zh"||n==="fr"?n:"en"}
+const tx=a=>Array.isArray(a)?a[LX[lang]]:a;
+const t=(k,...a)=>{const v=T[lang][k];return typeof v==="string"?v.replace(/\{(\d)\}/g,(_,i)=>a[i]):v};
+let P={};try{P=JSON.parse(localStorage.getItem("lp")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("lp",JSON.stringify(P))}catch(e){}};
+const K=L=>[...L.games.map((_,i)=>L.id+":g"+i),L.id+":q"];
+const done=L=>K(L).filter(k=>P[k]).length,full=L=>done(L)===K(L).length;
+const sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+let tab="recap",lv=0,cur=null,ICO="✈";const E={};
+
+function hdr(){document.documentElement.lang=HL[lang];document.title=t("app");
+ $("#hd").innerHTML=`<a class="logo" href="#">✈ ${t("app")}</a><nav><a href="#">${t("nl")}</a><a href="#about">${t("ab")}</a><select id="lg" aria-label="${t("lang")}">${[["en","English"],["zh","中文"],["fr","Français"]].map(([k,n])=>`<option value="${k}"${k===lang?" selected":""}>${n}</option>`).join("")}</select></nav>`}
+function result(el,key,m){const s=m===0?3:m<3?2:1;P[key]=Math.max(P[key]||0,s);save();
+ el.innerHTML=`<div class="res"><div class="big" aria-hidden="true">${ICO.repeat(s)}<span class="off">${ICO.repeat(3-s)}</span></div><h3>${t("r")[s]}</h3><p>${t("miss",m)}</p><button class="btn alt" data-again>${t("again")}</button> <button class="btn" data-next>${t("nxt")}</button></div>`}
+E.choose=(g,key,el)=>{let i=0,m=0,fresh=true;
+ const show=()=>{const q=g.qs[i],os=q.o.map(tx);fresh=true;
+  el.innerHTML=`<h3>${tx(g.title)}</h3><p>${t("qn",i+1,g.qs.length)}</p><p class="q">${tx(q.q)}</p><div class="opts${os.every(o=>o.length<16)?" two":""}">${os.map((o,j)=>`<button class="opt" data-j="${j}">${o}</button>`).join("")}</div><p class="fb"></p>`};
+ el.onclick=e=>{const b=e.target.closest(".opt");
+  if(b&&!b.disabled){const q=g.qs[i],fb=el.querySelector(".fb");
+   if(+b.dataset.j===q.a){b.classList.add("ok");el.querySelectorAll(".opt").forEach(x=>x.disabled=true);fb.innerHTML=`✓ ${tx(q.w)}<br><button class="btn" id="nx">${t(i+1<g.qs.length?"nx":"fin")}</button>`}
+   else{if(fresh)m++;fresh=false;b.classList.add("no");b.disabled=true;fb.textContent=t("wrong")}}
+  if(e.target.id==="nx"){i++;i<g.qs.length?show():result(el,key,m)}};
+ show()};
+E.sort=(g,key,el)=>{let m=0,sel=null,left=sh(g.items.map((_,i)=>i));const pl=g.buckets.map(()=>[]);
+ const draw=()=>{if(!left.length)return result(el,key,m);
+  el.innerHTML=`<h3>${tx(g.title)}</h3><p>${t("pick")}</p><div class="chips">${left.map(i=>`<button class="chip${sel===i?" on":""}" data-i="${i}">${g.items[i][0]}</button>`).join("")}</div><div class="bk">${g.buckets.map((b,j)=>`<button class="bucket" data-b="${j}"><b>${tx(b)}</b><span>${pl[j].map(i=>g.items[i][0]).join(", ")}</span></button>`).join("")}</div>`};
+ el.onclick=e=>{const c=e.target.closest(".chip"),b=e.target.closest(".bucket");
+  if(c){sel=+c.dataset.i;draw()}
+  else if(b&&sel!==null){const j=+b.dataset.b;
+   if(g.items[sel][1]===j){pl[j].push(sel);left=left.filter(x=>x!==sel);sel=null;draw()}
+   else{m++;b.classList.add("no");setTimeout(()=>b.classList.remove("no"),400)}}};
+ draw()};
+E.order=(g,key,el)=>{let m=0,n=0;const pool=sh(g.steps.map((_,i)=>i));
+ const draw=()=>{if(n===g.steps.length)return result(el,key,m);
+  el.innerHTML=`<h3>${tx(g.title)}</h3><p>${t("ord")}</p><ol class="seq">${g.steps.slice(0,n).map(s=>`<li>${tx(s)}</li>`).join("")}</ol><div class="chips">${pool.filter(i=>i>=n).map(i=>`<button class="chip" data-i="${i}">${tx(g.steps[i])}</button>`).join("")}</div>`};
+ el.onclick=e=>{const c=e.target.closest(".chip");if(!c)return;
+  if(+c.dataset.i===n){n++;draw()}else{m++;c.classList.add("no");setTimeout(()=>c.classList.remove("no"),400)}};
+ draw()};
+
+E.dispatch=(g,key,el)=>{let i=0,m=0,lives=3,raf=0,t0=0;
+ const miss=()=>{m++;lives--;i++;next()};
+ const next=()=>{cancelAnimationFrame(raf);if(i>=g.items.length||lives<1)return result(el,key,m);
+  const it=g.items[i],d=Math.max(3500,7000-400*i);
+  el.innerHTML=`<h3>${tx(g.title)}</h3><p>${t("dis")} <b>${"♥".repeat(lives)}</b><span class="off">${"♥".repeat(3-lives)}</span></p><div class="field"><div class="fall">${ICO} ${tx(it[0])}</div></div><div class="lanes">${g.lanes.map((n,j)=>`<button class="opt" data-j="${j}">${tx(n)}</button>`).join("")}</div>`;
+  const f=el.querySelector(".fall");t0=performance.now();
+  const tick=n=>{if(!f.isConnected)return;const p=Math.min(1,(n-t0)/d);f.style.top=p*68+"%";if(p<1)raf=requestAnimationFrame(tick);else miss()};
+  raf=requestAnimationFrame(tick)};
+ el.onclick=e=>{const b=e.target.closest(".lanes .opt");if(!b)return;cancelAnimationFrame(raf);if(+b.dataset.j===g.items[i][1]){i++;next()}else miss()};
+ next()};
+E.match=(g,key,el)=>{let m=0,a=-1,lock=false;const cs=sh(g.pairs.flatMap((p,i)=>[[i,p[0]],[i,p[1]]])),ok=new Set,op=new Set;
+ const draw=()=>{if(ok.size===cs.length)return result(el,key,m>>1);
+  el.innerHTML=`<h3>${tx(g.title)}</h3><p>${t("mat")}</p><div class="mg">${cs.map((c,k)=>`<button class="mc${ok.has(k)?" ok":op.has(k)?" up":""}" data-k="${k}">${ok.has(k)||op.has(k)?tx(c[1]):ICO}</button>`).join("")}</div>`};
+ el.onclick=e=>{const b=e.target.closest(".mc");if(!b||lock)return;const k=+b.dataset.k;if(ok.has(k)||op.has(k))return;
+  op.add(k);
+  if(a<0){a=k;draw()}
+  else if(cs[a][0]===cs[k][0]){ok.add(a);ok.add(k);op.clear();a=-1;draw()}
+  else{m++;lock=true;draw();setTimeout(()=>{op.clear();a=-1;lock=false;draw()},900)}};
+ draw()};
+E.clear=(g,key,el)=>{let i=0,m=0,fb="";
+ const draw=()=>{if(i>=g.items.length)return result(el,key,m>>1);
+  el.innerHTML=`<h3>${tx(g.title)}</h3><p>${t("clr")}</p><p class="fb">${fb}</p><div class="st" style="padding:18px;font-weight:700;font-size:1.15rem">${ICO} ${tx(g.items[i].s)}</div><div class="lanes" style="grid-template-columns:1fr 1fr;margin-top:12px"><button class="btn" data-v="1">${t("yes")}</button><button class="btn alt" data-v="0">${t("nope")}</button></div><p>${i+1} / ${g.items.length}</p>`};
+ el.onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;const it=g.items[i],ok=(b.dataset.v==="1")===it.a;
+  if(!ok)m++;fb=ok?"✓":"✗ "+t(it.a?"tru":"fls");i++;draw()};
+ draw()};
+E.spot=(g,key,el)=>{const sel=new Set;let fin=false,m=0;
+ const draw=()=>{el.innerHTML=`<h3>${tx(g.title)}</h3><p>${t("spot")}</p><div class="spot">${g.lines.map((l,i)=>{const on=sel.has(i);let c="ln"+(on?" on":""),x=tx(l.t);
+   if(fin){c+=(l.bad?" bad":"")+(on&&!l.bad?" fp":"");x+=l.bad?`<small>⚑ ${tx(l.why)}</small>`:on?`<small>${t("fine")}</small>`:""}
+   return`<button class="${c}" data-i="${i}"${fin?" disabled":""}>${x}</button>`}).join("")}</div><p>${fin?`<button class="btn" id="go">${t("nxt")}</button>`:`<button class="btn" id="ck">${t("chk")}</button>`}</p>`};
+ el.onclick=e=>{const b=e.target.closest(".ln");
+  if(b&&!fin){const i=+b.dataset.i;sel.has(i)?sel.delete(i):sel.add(i);draw();return}
+  if(e.target.id==="ck"){g.lines.forEach((l,i)=>{if(!!l.bad!==sel.has(i))m++});fin=true;draw()}
+  if(e.target.id==="go")result(el,key,m)};
+ draw()};
+function card(l){return`<a class="card" href="#${l.id}" style="--t:${l.color}"><div class="band"><span>${l.ico||"✈"} ${t("flt",l.n)}</span><span>LL0${l.n}</span></div><div class="body"><h3>${tx(l.title)}</h3><p>${tx(l.sub)}</p>${l.by?`<p><b>${tx(l.by)}</b></p>`:""}<div class="bar"><i style="width:${done(l)/K(l).length*100}%"></i></div><span class="btn">${full(l)?t("again"):done(l)?t("cont"):t("start")}</span><div class="bc"></div></div></a>`}
+function homeView(){cur=null;const got=LESSONS.filter(full).length;let now=false;
+ const nodes=LESSONS.map(l=>{if(full(l))return`<span class="wp on">✓</span>`;if(!now){now=true;return`<span class="wp now">✈</span>`}return`<span class="wp">${l.n}</span>`}).join("<i></i>");
+ app.innerHTML=`<section class="hero"><h1>${t("h")}</h1><p class="lead">${t("lead")}</p><div class="route" role="img" aria-label="${t("legs",got,LESSONS.length)}">${nodes}<i></i><span class="wp">＋</span></div><p><b>${t("legs",got,LESSONS.length)}</b></p></section>
+ <div class="grid">${LESSONS.map(card).join("")}<div class="card soon"><div class="big">＋</div><b>${t("soon")}</b><p>${t("soond")}</p></div></div>`}
+function lessonView(L){cur=L;ICO=L.ico||"✈";
+ app.innerHTML=`<div class="skin ${L.pat||""}" style="--t:${L.color}"><a class="back" href="#">${t("back")}</a><div class="lh" style="--t:${L.color}"><span class="big" aria-hidden="true">${ICO}</span><div><h1>${tx(L.title)}</h1><p class="lead">${tx(L.sub)}</p>${L.by?`<p><b>${tx(L.by)}</b></p>`:""}</div></div><nav class="tabs">${[["recap","t1"],["game","t2"],["quiz","t3"],["res","t4"]].map(([k,n])=>`<button class="tb${tab===k?" on":""}" data-t="${k}">${t(n)}</button>`).join("")}</nav><section id="pane" style="--t:${L.color}"></section></div>`;
+ const p=$("#pane");
+ if(tab==="recap")p.innerHTML=`<ul class="rc">${L.recap.map(r=>`<li class="st"><h3>${tx(r[0])}</h3><p>${tx(r[1])}</p></li>`).join("")}</ul><p><button class="btn" data-t="game">${t("go")}</button></p>`;
+ else if(tab==="res")p.innerHTML=`<ul class="links">${L.links.map(([n,u])=>`<li><a class="st" href="${u}" target="_blank" rel="noopener">${tx(n)} ↗</a></li>`).join("")}</ul>`;
+ else{const g=tab==="game";
+  p.innerHTML=(g?`<div class="lvs">${L.games.map((x,i)=>`<button class="lv${i===lv?" on":""}" data-lv="${i}">${P[L.id+":g"+i]?"✓ ":""}${t("lvl",i+1)}</button>`).join("")}</div>`:"")+`<div id="stage" class="st"></div>`;
+  const d=g?L.games[lv]:{kind:"choose",title:t("quizT"),qs:L.quiz};
+  E[d.kind](d,L.id+(g?":g"+lv:":q"),$("#stage"))}}
+function aboutView(){cur=null;
+ app.innerHTML=`<a class="back" href="#">${t("back")}</a><h1>${t("abh")}</h1><p class="lead">${t("abp")}</p><h2>${t("addh")}</h2><p>${t("addp")}</p>
+<pre class="st">{ id:"lesson-03", n:"3", color:"#0e9aa7", ico:"🎤", pat:"dots",
+  by:["Guest: …","嘉宾：…","Invité : …"],
+  title:["Title","标题","Titre"], sub:"…",
+  recap:[[["Point","要点","Point"],["Text","说明","Texte"]]],
+  games:[{kind:"order", title:[…], steps:[[…],[…]]}],
+  quiz:[{q:[…], o:[[…],[…]], a:0, w:[…]}],
+  links:[[["Name","名称","Nom"],"https://example.com"]] }</pre>`}
+function view(){const h=location.hash.slice(1),L=LESSONS.find(l=>l.id===h);L?lessonView(L):h==="about"?aboutView():homeView()}
+function route(){view();scrollTo(0,0)}
+app.onclick=e=>{const b=e.target.closest("[data-t],[data-lv],[data-again],[data-next]");if(!b||!cur)return;
+ if(b.dataset.t)tab=b.dataset.t;
+ if(b.dataset.lv)lv=+b.dataset.lv;
+ if("next" in b.dataset){if(tab==="game"&&lv<cur.games.length-1)lv++;else if(tab==="game")tab="quiz";else{location.hash="";return}}
+ lessonView(cur)};
+document.addEventListener("change",e=>{if(e.target.id==="lg"){lang=e.target.value;try{localStorage.setItem("lpl",lang)}catch(_){}hdr();view()}});
+addEventListener("hashchange",()=>{tab="recap";lv=0;route()});
+hdr();route();
+</script>
+</body>
+</html>
